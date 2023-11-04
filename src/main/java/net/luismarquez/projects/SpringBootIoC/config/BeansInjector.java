@@ -1,6 +1,8 @@
 package net.luismarquez.projects.SpringBootIoC.config;
 
-import net.luismarquez.projects.SpringBootIoC.repository.ProductRepository;
+import net.luismarquez.projects.SpringBootIoC.repository.ProductRepositoryA;
+import net.luismarquez.projects.SpringBootIoC.repository.ProductRepositoryB;
+import net.luismarquez.projects.SpringBootIoC.service.ProductService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -8,8 +10,18 @@ import org.springframework.context.annotation.Configuration;
 public class BeansInjector {
 
     @Bean
-    public ProductRepository createProductRepository(){
-        return new ProductRepository();
+    public ProductRepositoryA createProductRepositoryA(){
+        return new ProductRepositoryA();
+    }
+
+    @Bean
+    public ProductRepositoryB createProductRepositoryB(){
+        return new ProductRepositoryB();
+    }
+
+    @Bean
+    public ProductService createProductService(){
+        return new ProductService();
     }
 
 }
