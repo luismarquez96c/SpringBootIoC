@@ -9,4 +9,8 @@ public class ComponentA {
     @Autowired
     private ComponentB componentB;
 
+    public String getClassName(String name){
+        return "El nombre del producto es: " + name;
+    }
+
 }

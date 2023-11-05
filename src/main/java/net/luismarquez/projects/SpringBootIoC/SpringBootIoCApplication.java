@@ -3,6 +3,7 @@ package net.luismarquez.projects.SpringBootIoC;
 import net.luismarquez.projects.SpringBootIoC.service.ProductService;
 import net.luismarquez.projects.SpringBootIoC.service.ShoppingCarService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -18,6 +19,9 @@ import java.util.List;
 @RestController
 public class SpringBootIoCApplication {
 
+	@Value("${messages.success}")
+	private String message;
+
 	@Autowired
 	private ProductService productService;
 
@@ -32,6 +36,11 @@ public class SpringBootIoCApplication {
 	public String example(){
 		productService.save("Zapatos Nike");
 		return "Hello Spring Boot IoC";
+	}
+
+	@RequestMapping("/get-message")
+	public String getExample(){
+		return message;
 	}
 
 	@RequestMapping("/add-product")

@@ -6,6 +6,7 @@ import net.luismarquez.projects.SpringBootIoC.repository.ProductRepository;
 import net.luismarquez.projects.SpringBootIoC.repository.ProductRepositoryA;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Component;
@@ -25,11 +26,15 @@ import org.springframework.web.context.annotation.SessionScope;
 //@Scope(value = "application", proxyMode = ScopedProxyMode.TARGET_CLASS)
 public class ProductService {
 
+    @Value("${messages.success}")
+    private String message;
+
     private ProductRepository productRepository;
 
     @PostConstruct
     public void postConstruct(){
         System.out.println("====> Creando instancia de " + this.getClass().getSimpleName());
+        System.out.println("====> Mensaje desde application,properties: " + message);
     }
 
     @PreDestroy
