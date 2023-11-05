@@ -1,36 +1,31 @@
 package net.luismarquez.projects.SpringBootIoC;
 
-import net.luismarquez.projects.SpringBootIoC.repository.ProductRepositoryA;
-import net.luismarquez.projects.SpringBootIoC.repository.ProductRepositoryB;
 import net.luismarquez.projects.SpringBootIoC.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.Bean;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @SpringBootApplication
+@RestController
 public class SpringBootIoCApplication {
 
+	@Autowired
 	private ProductService productService;
-
 
 	public static void main(String[] args) {
 		SpringApplication.run(SpringBootIoCApplication.class, args);
 	}
 
-	@Bean
-	public CommandLineRunner comandoUtilizandoAutowired(){
-		return args -> {
-
-			productService.save("Teclado RGB");
-			productService.remove("Auriculares básicos");
-
-		};
+	@RequestMapping("/example")
+	public String example(){
+		productService.save("Zapatos Nike");
+		return "Hello Spring Boot IoC";
 	}
 
-	@Autowired
-	public void setProductService(ProductService productService){
-		this.productService = productService;
-	}
 }
