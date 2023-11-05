@@ -11,11 +11,11 @@ import org.springframework.stereotype.Service;
 @Service
 public class ProductService {
 
-    @Autowired
-//    @Qualifier("productMySQLRepository")
     private ProductRepository productRepository;
 
-    public ProductService() {
+    @Autowired
+    public ProductService(@Qualifier("productXMLRepository") ProductRepository productRepository) {
+        this.productRepository = productRepository;
         System.out.println("Creando instancia de " + this.getClass().getSimpleName());
     }
 

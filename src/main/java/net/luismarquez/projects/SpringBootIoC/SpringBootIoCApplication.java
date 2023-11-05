@@ -12,8 +12,12 @@ import org.springframework.context.annotation.Bean;
 @SpringBootApplication
 public class SpringBootIoCApplication {
 
-	@Autowired
 	private ProductService productService;
+
+	@Autowired
+	public SpringBootIoCApplication(ProductService productService){
+		this.productService = productService;
+	}
 
 	public static void main(String[] args) {
 		SpringApplication.run(SpringBootIoCApplication.class, args);
