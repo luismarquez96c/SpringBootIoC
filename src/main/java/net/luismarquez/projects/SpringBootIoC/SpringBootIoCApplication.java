@@ -14,10 +14,6 @@ public class SpringBootIoCApplication {
 
 	private ProductService productService;
 
-	@Autowired
-	public SpringBootIoCApplication(ProductService productService){
-		this.productService = productService;
-	}
 
 	public static void main(String[] args) {
 		SpringApplication.run(SpringBootIoCApplication.class, args);
@@ -31,5 +27,10 @@ public class SpringBootIoCApplication {
 			productService.remove("Auriculares básicos");
 
 		};
+	}
+
+	@Autowired
+	public void setProductService(ProductService productService){
+		this.productService = productService;
 	}
 }

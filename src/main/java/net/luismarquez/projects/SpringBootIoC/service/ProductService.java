@@ -13,9 +13,8 @@ public class ProductService {
 
     private ProductRepository productRepository;
 
-    @Autowired
-    public ProductService(@Qualifier("productXMLRepository") ProductRepository productRepository) {
-        this.productRepository = productRepository;
+
+    public ProductService() {
         System.out.println("Creando instancia de " + this.getClass().getSimpleName());
     }
 
@@ -25,6 +24,12 @@ public class ProductService {
 
     public void remove(String name){
         productRepository.remove(name);
+    }
+
+    @Qualifier("productXMLRepository")
+    @Autowired
+    public void setProductRepository(ProductRepository productRepository){
+        this.productRepository = productRepository;
     }
 
 }
